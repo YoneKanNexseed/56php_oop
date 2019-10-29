@@ -228,7 +228,7 @@ $todo->create($task);
 
 ここまでできたらまずはindex.phpにアクセスし、フォームを送信し[phpMyAdmin](http://localhost/phpmyadmin/)を確認してみます。
 
-確認できたら、もうこのファイルの役割は終わりなのでindex.phpにリダイレクトする以下のコードを追記します。
+dbへの反映が確認できたら、もうこのファイルの役割は終わりなのでindex.phpにリダイレクトする以下のコードを追記します。
 
 ```
 header('Location: index.php');
@@ -250,7 +250,7 @@ php_oop/
         └ style.css
 ```
 
-index.php
+*index.php*
 ```
 <!DOCTYPE html>
 <html lang="ja">
@@ -294,7 +294,7 @@ index.php
 </html>
 ```
 
-create.php
+*create.php*
 ```
 <?php
 
@@ -311,7 +311,7 @@ $todo->create($task);
 header('Location: index.php');
 ```
 
-config/dbconnect.php
+*config/dbconnect.php*
 ```
 <?php
 
@@ -343,7 +343,7 @@ class DbManager
 }
 ```
 
-Models/Todo.php
+*Models/Todo.php*
 ```
 <?php
 
@@ -380,8 +380,8 @@ class Todo
 
 ### 一覧用のUIの追加
 
-index.phpに一覧を表示するhtmlの元になるものを追加します。一覧はtableで出力します。
-後ほどbody内のタグは差し替えます。
+index.phpに一覧を表示するhtmlの元になるものを追加します。一覧は `<table>` で出力します。
+後ほど `<tbody>` 内のタグは差し替えます。
 
 ```
 <section class="mt-5">
@@ -430,9 +430,9 @@ Models/Todo.php 内に一覧を取得するためのメソッドallを作りま�
 
 ### データ取得テスト
 
-index.php内で一覧のデータが取得できるかテストします。htmlコードの上に以下コードを追加します。
+index.php内で一覧のデータが取得できるかテストします。`<html>` コードの上に以下コードを追加します。
 
-index.php
+*index.php*
 ```
 <?php
     // require_once 'Models/Todo.php';
@@ -450,16 +450,16 @@ index.php
 ?>
 ```
 
-htmlのタグ `<pre>` を使うとデバッグした内容が読みやすくなります。
-まずは一覧が取得できているか確認します。var_dump()以降のhtmlコードの表示は必要ありません。処理が終わったら、それ以降を中断するためにexit()を使います。
+htmlのタグ `<pre>` を使うとデバッグした内容の可読性が上がります。
+まずは一覧が取得できているか確認します。 `var_dump()` 以降のhtmlコードの表示は必要ありません。処理が終わったら、それ以降を中断するために `exit()` を使います。
 
 長いページなどで部分的なデバッグをする際に有効です。
 
 ### htmlで出力する
 
-次に、foreachを使ってhtmlで一覧を出力します。
+次に、 `foreach` を使ってhtmlで一覧を出力します。
 
-html常に出力したい場合は可読性を考慮し、コロン構文を使います。一覧は配列として$tasksに格納したので、以下のようなコードで出力してみましょう。
+html常に出力したい場合は可読性を考慮し、 *コロン構文* を使います。一覧は配列として$tasksに格納したので、以下のようなコードで出力してみましょう。
 
 配列は複数のデータを格納しているので、以下のような書き方をすることが多いです。便利なので覚えておきましょう。
 
@@ -484,11 +484,11 @@ $task):?>
 <?php endforeach; ?>
 ```
 
-テーブルの列(trタグ)が配列の数だけ繰り返されます。
+テーブルの列( `<tr>` )が配列の数だけ繰り返されます。
 
 ### エスケープ処理
 
-入力されたデータが装飾されていて、予期しない表示になることがあります。XSS(クロスサイトスクリプティング対策)のために必ずエスケープ処理をしましょう。
+入力されたデータが装飾されていて、予期しない表示になることがあります。 *XSS(クロスサイトスクリプティング対策)* のために必ずエスケープ処理をしましょう。
 
 現在はFireFox以外のブラウザはJSコードをフォームで送信出来ないようです。
 
@@ -515,11 +515,10 @@ require_once('function.php');
 
 ```
 <td><?php echo h($task['name']); ?></td>
-<td><?php echo h($task['due_date']); ?></td>```
-
+<td><?php echo h($task['due_date']); ?></td>
+```
 
 ここまでのフォルダ構造とコードは以下の通りになります。
-
 ```
 php_oop/
   ├ index.php (トップページ)
@@ -535,7 +534,7 @@ php_oop/
         └ style.css
 ```
 
-index.php
+*index.php*
 ```
 <?php
 
@@ -627,7 +626,7 @@ index.php
 </html>
 ```
 
-Models/Todo.php
+*Models/Todo.php*
 ```
 <?php
 
@@ -665,7 +664,7 @@ class Todo
 }
 ```
 
-function.php
+*function.php*
 ```
 <?php
 
