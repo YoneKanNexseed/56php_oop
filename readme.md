@@ -20,6 +20,7 @@ php_oop/
 ## ファーストコミット
 
 ファイルを作成したら、ファーストコミットします。
+`initial commit` と `first commit` どちらでもOKです。
 
 ```
 initial commit
@@ -108,6 +109,7 @@ class DbManager
 ### DBの作成とテーブル作成
 
 phpMyAdminにアクセスしてDB「Todo」を作成します。
+[phpMyAdmin](http://localhost/phpmyadmin/)
 
 元リポジトリのdatabase/php_oop.sqlをDL（もしくはコピペ）しておきます。
 phpMyAdmineからエクスポートしてテーブルをあらかじめ作っておきます。
