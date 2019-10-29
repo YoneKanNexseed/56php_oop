@@ -61,9 +61,19 @@
               <?php foreach ($tasks as
               $task):?>
               <tr>
-                <th>
+                <td>
                 <?php echo $task['name']; ?>
-                </th>
+                </td>
+                <td>
+                <?php echo $task['due_date']; ?>
+                </td>
+                <td>NOT YET</td>
+                <td>
+                    <a class="text-success" href="">EDIT</a>
+                </td>
+                <td>
+                    <a class="text-danger" href="">DELETE</a>
+                </td>
               </tr>
               <?php endforeach; ?>
             </tbody>
