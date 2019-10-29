@@ -1,4 +1,5 @@
 <?php
+    require_once 'function.php';
     // require_once('Models/Todo.php');
     require_once 'Models/Todo.php';
 
@@ -62,10 +63,10 @@
               $task):?>
               <tr>
                 <td>
-                <?php echo $task['name']; ?>
+                <?php echo h($task['name']); ?>
                 </td>
                 <td>
-                <?php echo $task['due_date']; ?>
+                <?php echo h($task['due_date']); ?>
                 </td>
                 <td>NOT YET</td>
                 <td>
