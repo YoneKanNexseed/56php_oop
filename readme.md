@@ -5,8 +5,8 @@
 1. [下準備](#下準備)
 2. [DBの設定](#db%E3%81%AE%E8%A8%AD%E5%AE%9A)
 3. [todoクラス作成](#todoクラス作成)
-4. [#データの登録](#データの登録create)
-5. [一覧の出力](#一覧の出力read)
+4. [データの登録（Create）](#データの登録create)
+5. [一覧の出力（Read）](#一覧の出力read)
 
 ## 下準備
 
@@ -36,7 +36,7 @@ initial commit
 first commit
 ```
 
-## index.phpとDB読み込み用にコードを追加
+### index.phpとDB読み込み用にコードを追加
 
 index.phpのコードと以下の通り追加します。
 
@@ -81,6 +81,9 @@ try {
     throw new \PDOException($e->getMessage(), (int) $e->getCode());
 }
 ```
+
+[▲先頭に戻る▲](#todo-app-を作ろう)
+
 ## DBの設定
 
 ### SQLのエクスポートとdbconnect.phpに追加したコードをクラスに書き換える
@@ -197,6 +200,9 @@ class Todo
     }
 }
 ```
+
+[▲先頭に戻る▲](#todo-app-を作ろう)
+
 ## データの登録(Create)
 
 空の create.php Todo.phpからクラスを使えるように以下のようにコードを追加します。
@@ -382,6 +388,8 @@ class Todo
     }
 }
 ```
+
+[▲先頭に戻る▲](#todo-app-を作ろう)
 
 ## 一覧の出力(Read)
 
@@ -682,5 +690,5 @@ function h($str)
     // エスケープ処理
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
-
 ```
+[▲先頭に戻る▲](#todo-app-を作ろう)
