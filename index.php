@@ -1,3 +1,18 @@
+<?php
+    // require_once('Models/Todo.php');
+    require_once 'Models/Todo.php';
+
+    //Todoクラスのインスタンス化
+    $todo = new Todo();
+
+    //DBからデータを全件取得
+    $tasks = $todo->all();
+
+    echo '<pre>';
+    var_dump($tasks);
+    exit();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
