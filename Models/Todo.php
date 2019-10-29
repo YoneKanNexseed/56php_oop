@@ -13,4 +13,10 @@ class Todo
         $this->db_manager = new DbManager();
         $this->db_manager->connect();
     }
+
+    public function create($name)
+    {
+        $stmt = $this->db_manager->dbh->prepare('INSERT INTO '.$this->table.' (name) VALUES (?)');
+        $stmt->execute([$name]);
+    }
 }
