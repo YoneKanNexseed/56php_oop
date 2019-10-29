@@ -1,5 +1,8 @@
 <?php
+
+    // require_once('function.php');
     require_once 'function.php';
+
     // require_once('Models/Todo.php');
     require_once 'Models/Todo.php';
 
