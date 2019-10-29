@@ -1,13 +1,22 @@
 # ToDo App を作ろう
 
-## first commit
+## 目次
+
+1. [下準備](#下準備)
+2. [DBの設定](#db%E3%81%AE%E8%A8%AD%E5%AE%9A)
+3. [todoクラス作成](#todoクラス作成)
+4. [#データの登録](#データの登録create)
+5. [一覧の出力](#一覧の出力read)
+
+## 下準備
 
 まずは以下ripositoryを参考にディレクトリを作成します。
 
 元repositoryはこちら
+
 https://github.com/camillenexseed/56php_oop
 
-リポジトリのディレクトリ名と用意するファイル
+初期段階でリポジトリのディレクトリ名と用意するファイル
 
 ```
 php_oop/
@@ -17,7 +26,7 @@ php_oop/
     └ style.css
 ```
 
-## ファーストコミット
+### ファーストコミット
 
 ファイルを作成したら、ファーストコミットします。
 `initial commit` と `first commit` どちらでもOKです。
@@ -125,7 +134,7 @@ phpMyAdminを使ったやり方は今の所3通りあります。
 * GUIを利用する
 * phpMyAdminからSQL文を実行する
 
-## Todoの追加機能作成
+## todoクラス作成
 
 ### データの登録用のUIを先に作成
 
@@ -188,7 +197,7 @@ class Todo
     }
 }
 ```
-#### データの登録(Create)
+## データの登録(Create)
 
 空の create.php Todo.phpからクラスを使えるように以下のようにコードを追加します。
 
