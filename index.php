@@ -8,9 +8,9 @@
     //DBからデータを全件取得
     $tasks = $todo->all();
 
-    echo '<pre>';
-    var_dump($tasks);
-    exit();
+    // echo '<pre>';
+    // var_dump($tasks);
+    // exit();
 ?>
 
 <!DOCTYPE html>
@@ -25,15 +25,15 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<header class="px-5 bg-primary">
-        <nav class="navbar navbar-dark">
-            <a href="index.php" class="navbar-brand">TODO APP</a>
-            <div class="justify-content-end">
-                <span class="text-light">
-                    SeedKun
-                </span>
-            </div>
-        </nav>
+  <header class="px-5 bg-primary">
+      <nav class="navbar navbar-dark">
+          <a href="index.php" class="navbar-brand">TODO APP</a>
+          <div class="justify-content-end">
+              <span class="text-light">
+                  SeedKun
+              </span>
+          </div>
+      </nav>
     </header>
     <main class="container py-5">
         <section>
@@ -48,38 +48,25 @@
         </section>
         <section class="mt-5">
           <table class="table table-hover">
-              <thead>
-                <tr class="bg-primary text-light">
-                    <th class=>TODO</th>
-                    <th>DUE DATE</th>
-                    <th>STATUS</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>create new website</td>
-                    <td>2019/08/21</td>
-                    <td>NOT YET</td>
-                    <td>
-                        <a class="text-success" href="edit.php">EDIT</a>
-                    </td>
-                    <td>
-                        <a class="text-danger" href="delete.php">DELETE</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>go to club</td>
-                    <td>2019/10/21</td>
-                    <td>DONE</td>
-                    <td>
-                        <a class="text-success" href="edit.php">EDIT</a>
-                    </td>
-                    <td>
-                        <a class="text-danger" href="delete.php">DELETE</a>
-                    </td>
-                </tr>
-              </thead>
-              <tbody></tbody>
+            <thead>
+              <tr class="bg-primary text-light">
+                  <th class=>TODO</th>
+                  <th>DUE DATE</th>
+                  <th>STATUS</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($tasks as
+              $task):?>
+              <tr>
+                <th>
+                <?php echo $task['name']; ?>
+                </th>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
           </table>
         </section>
     </main>
