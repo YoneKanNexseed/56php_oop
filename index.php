@@ -73,7 +73,7 @@
                 </td>
                 <td>NOT YET</td>
                 <td>
-                    <a class="text-success" href="">EDIT</a>
+                    <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
                 </td>
                 <td>
                     <a class="text-danger" href="">DELETE</a>

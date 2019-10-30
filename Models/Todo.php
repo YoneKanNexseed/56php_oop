@@ -29,4 +29,14 @@ class Todo
 
         return $tasks;
     }
+
+    //editするためのデータを取得
+    public function get($id)
+    {
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM '.$this->table.' WHERE id = ?');
+        $stmt->execute([$id]);
+        $task = $stmt->fetch();
+
+        return $task;
+    }
 }

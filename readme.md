@@ -177,7 +177,7 @@ index.phpからフォームを送信して、create.phpに遷移し、まずは�
 ### 使いまわせるようにTodo.phpというクラスを作る
 
 Models/ディレクトリーにTodo.phpを作成します。
-dbconnect.phpを一度読み込んで、db操作をするためのclassを使えるようにします。
+dbconnect.phpを一度読み込んで、DB操作をするためのclassを使えるようにします。
 
 #### 初期値の設定
 
