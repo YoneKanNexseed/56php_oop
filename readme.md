@@ -708,7 +708,7 @@ function h($str)
 <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
 ```
 
-edit.phpのhtmlも追加しておきます。
+更新用UIも作ります。edit.phpを作成しhtmlを追加しておきます。
 
 ```
 <!DOCTYPE html>
@@ -749,10 +749,10 @@ edit.phpのhtmlも追加しておきます。
 </html>
 ```
 
-#### GETデータが取得できているかを確認
+#### GETデータが取得できるか確認
 
-edit.php のhtmlの前にphpコードを追加します。
-index.phpの「EDIT」のリンクをクリックし、データが渡されているか developer tool で確認します。
+edit.php のhtmlの前に以下phpコードを追加します。
+index.phpから「EDIT」のリンクテキストをクリックし、データがきちんと渡っているか developer tool で確認します。
 
 ```
 <?php
@@ -767,6 +767,7 @@ var_dump($id);
 #### Todoクラスにupdate用のメソッド追加
 
 Models/Todo.phpにタスクを取得するためのコードを追加します。
+
 取得したidを利用してレコードを取得します。PDOのfetchメソッドを使います。
 
 ```
@@ -783,7 +784,7 @@ Models/Todo.phpにタスクを取得するためのコードを追加します�
 
 #### 取得したデータをedit.phpに表示
 
-Todoクラスに作成したgetメソッドを使ってデータを取得します。
+Todoクラスに作成したスーパーグローバル変数 `$_GET` を使ってデータを取得します。
 
 ```
 <?php
@@ -806,7 +807,7 @@ Todoクラスに作成したgetメソッドを使ってデータを取得しま�
 ?>
 ```
 
-しつこいようですが、var_dump()でデバッグしちゃんとデータが取得できているか確認します。
+しつこいようですが、ここでまたvar_dump()でデバッグしちゃんとデータが取得できているか確認します。
 
 ```
 var_dump($task);
@@ -821,15 +822,17 @@ var_dump($task);
 ### 実際に更新機能を追加する
 
 まずは空のupdate.phpを作成します。
-updateする際、idをトリガーとしてレコードを抽出します。
-なのでidを `<input>` を使ってPOSTできるようにします。
+
+idを使ってレコードを抽出します。
+`<input>` を使ってidをPOSTできるようにします。
+
 UI上見えるのは美しくないのでhiddenで隠しておきます。
 
 ```
 <input type="hidden" value="<?php echo h($task['id']); ?>" name="id">
 ```
 
-UPDATEボタンをクリックしてupdate.phpに遷移して developer tool でid、task(内容)それぞれの値がPOSTされているか確認します。
+UPDATEボタンをクリックしてupdate.phpに遷移します。developer tool でid、task(内容)それぞれの値がPOSTされているか確認します。
 
 
 #### Todo.php に update メソッドを追加
@@ -844,7 +847,7 @@ public function update($name, $id)
 }
 ```
 
-update.phpでまずは、スーパーグローバル関数でname task、idに格納されたデータを取得できるか確認します。
+update.phpでスーパーグローバル変数 `$_POST` を使って、「task」、「id」に格納されたデータを取得できているか確認します。
 
 ```
 <?php
@@ -858,7 +861,7 @@ var_dump($id);
 var_dump($task);
 ```
 
-さらにTodoクラスをインスタンス化しupdateメソッドを実行できるようにします。
+さらにTodoクラスをインスタンス化しupdateメソッドを実行します。
 
 ```
 <?php
@@ -881,13 +884,14 @@ $todo->update($task, $id);
 
 ```
 
-phpMyAdminにデータが更新されていることが確認できたらトップページにリダイレクト処理をします。
+phpMyAdminにデータが更新されていることが確認できたらトップページへのリダイレクト処理を追加します。
 
 ```
 header('Location: index.php');
 ```
 
 ここまでのフォルダ構造とコードは以下の通りになります。
+
 ```
 php_oop/
   ├ index.php (トップページ)
