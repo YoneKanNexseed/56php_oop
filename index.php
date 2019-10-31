@@ -3,6 +3,11 @@
     // require_once('function.php');
     require_once 'function.php';
 
+    $order = '';
+    if (isset($_GET['order'])) {
+        $order = $_GET['order'];
+    }
+
     // require_once('Models/Todo.php');
     require_once 'Models/Todo.php';
 
@@ -10,7 +15,7 @@
     $todo = new Todo();
 
     //DBからデータを全件取得
-    $tasks = $todo->all();
+    $tasks = $todo->all($order);
 
     // echo '<pre>';
     // var_dump($tasks);
@@ -33,8 +38,10 @@
   <header class="px-5 bg-primary">
       <nav class="navbar navbar-dark">
           <a href="index.php" class="navbar-brand">TODO APP</a>
-          <div class="justify-content-end">
-              <span class="text-light">Camille</span>
+          <div class="justify-content-end text-white">
+              ORDER:
+              <a href="index.php?order=asc" class="text-white"><i class="fas fa-arrow-up"></i></a>
+              <a href="index.php?order=desc" class="text-white"><i class="fas fa-arrow-down"></i></a>
           </div>
       </nav>
     </header>

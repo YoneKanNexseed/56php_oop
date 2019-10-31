@@ -21,9 +21,12 @@ class Todo
     }
 
     //一覧を呼び出すためのメソッド
-    public function all()
+    public function all($order)
     {
-        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM '.$this->table);
+        if ($order != '') {
+            $order = ' ORDER BY id '.strtoupper($order);
+        }
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM '.$this->table.$order);
         $stmt->execute();
         $tasks = $stmt->fetchAll();
 
