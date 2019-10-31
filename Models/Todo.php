@@ -23,6 +23,7 @@ class Todo
     //一覧を呼び出すためのメソッド
     public function all($order)
     {
+        // idで並べ替え機能追加
         if ($order != '') {
             $order = ' ORDER BY id '.strtoupper($order);
         }

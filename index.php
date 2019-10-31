@@ -3,6 +3,7 @@
     // require_once('function.php');
     require_once 'function.php';
 
+    // 並べ替え機能
     $order = '';
     if (isset($_GET['order'])) {
         $order = $_GET['order'];
