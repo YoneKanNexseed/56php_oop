@@ -1,3 +1,6 @@
 i {
   font-size: 30px;
 }
+.nowrap {
+  white-space: nowrap;
+}

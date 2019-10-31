@@ -42,13 +42,12 @@ class Todo
 
     public function update($name, $id)
     {
-        $stmt = $this->db_manager->dbh->prepare('UPDATE '.$this->table.' SET name = ? WHERE id = ?');
+        // $stmt = $this->db_manager->dbh->prepare('UPDATE '.$this->table.' SET name = ? WHERE id = ?');
+        // $stmt->execute([$name, $id]);
+        $stmt = $this->db_manager->dbh->prepare('UPDATE '.$this->table.' SET name = ? , updated_at = ? WHERE id = ?');
         // updated_at の時間も更新する。更新した時間を取得する。
-        $stmt->execute([$name, $id]);
-        // $stmt = $this->db_manager->dbh->prepare('UPDATE '.$this->table.' SET name = ? , updated_at = ? WHERE id = ?');
-        // // updated_at の時間も更新する。更新した時間を取得する。
-        // $updated = date('Y-m-d H:i:s', time());
-        // $stmt->execute([$name, $updated, $id]);
+        $updated = date('Y-m-d H:i:s', time());
+        $stmt->execute([$name, $updated, $id]);
     }
 
     //削除するためのメソッド
