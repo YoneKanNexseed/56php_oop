@@ -7,7 +7,8 @@
 3. [todoクラス作成](#todoクラス作成)
 4. [データの登録（Create）](#データの登録create)
 5. [一覧の出力（Read）](#一覧の出力read)
-4. [データの更新（update）](#データの更新update)
+4. [データの更新（Update）](#データの更新update)
+5. [データの削除（Delete）](#データの削除delete)
 
 ## 下準備
 
@@ -206,7 +207,7 @@ class Todo
 
 ## データの登録(Create)
 
-空の create.php Todo.phpからクラスを使えるように以下のようにコードを追加します。
+空の create.php を作成し Todo.phpからクラスを使えるように以下のようにコードを追加します。
 
 このファイルはデータの更新のためにのみ使います。
 
@@ -221,7 +222,7 @@ $task = $_POST['task'];
 ```
 
 次に、Models/Todo.phpにデータを登録するメソッドを追加します。
-`擬似クラス` や `アロー演算子` を使っているのでコードが長くて混乱してしまいがちですが **やっていることは一緒** です。
+`擬似変数` や `アロー演算子` を使っているのでコードが長くて混乱してしまいがちですが **やっていることは一緒** です。
 また `アロー演算子` 内で使う変数には `$` は不要になりますので注意しましょう。
 
 ```
@@ -250,12 +251,12 @@ dbへの反映が確認できたら、もうこのファイルの役割は終わ
 header('Location: index.php');
 ```
 
-ここまでのフォルダ構造とコードは以下の通りになります。
+ここまでのフォルダー構造とコードは以下の通りになります。(*印のついたものは新規追加ファイルです)
 
 ```
 php_oop/
   ├ index.php (トップページ)
-  ├ create.php (データ登録機能)
+  ├ *create.php (データ登録機能)
   ├ config/
   |    └ dbconnect.php（DBとアクセスするための設定など）
   ├ Models/
@@ -536,16 +537,16 @@ require_once('function.php');
 <td><?php echo h($task['due_date']); ?></td>
 ```
 
-ここまでのフォルダ構造とコードは以下の通りになります。
+ここまでのフォルダー構造とコードは以下の通りになります。(*印のついたものは新規追加ファイルです)
 ```
 php_oop/
   ├ index.php (トップページ)
   ├ create.php (データ登録機能)
-  ├ function.php (エスケープ処理)
+  ├ *function.php (エスケープ処理)
   ├ config/
   |    └ dbconnect.php（DBとアクセスするための設定など）
   ├ Models/
-  |    └ Todo.php（CRUDのやりとり）
+  |    └ *Todo.php（CRUDのやりとり）
   └ assets/
     └ css/(元リポジトリのファイルをコピペなので割愛)
         ├ reset.css
@@ -890,14 +891,14 @@ phpMyAdminにデータが更新されていることが確認できたらトッ�
 header('Location: index.php');
 ```
 
-ここまでのフォルダ構造とコードは以下の通りになります。
+ここまでのフォルダー構造とコードは以下の通りになります。(*印のついたものは新規追加ファイルです)
 
 ```
 php_oop/
   ├ index.php (トップページ)
   ├ create.php (データ登録機能)
-  ├ edit.php (データ更新(UI))
-  ├ update.php (データ更新機能)
+  ├ *edit.php (データ更新(UI))
+  ├ *update.php (データ更新機能)
   ├ function.php (エスケープ処理)
   ├ config/
   |    └ dbconnect.php（DBとアクセスするための設定など）
@@ -1137,5 +1138,178 @@ $todo = new Todo();
 $todo->update($task, $id);
 
 header('Location: index.php');
+```
+[▲先頭に戻る▲](#todo-app-を作ろう)
+
+## データの削除（Delete）
+
+削除機能を追加します。
+
+index.phpのDELETEのテキストリンクをクリックしたらdelete.phpに遷移できるようコードを修正します。
+
+```
+<a class="text-danger" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
+```
+
+空のdelete.phpを作成し、index.phpからGETされたデータを取得できるか確認します。
+
+```
+$id = $_GET['id'];
+var_dump($id);
+```
+
+Models/Todo.php内にメソッドdeleteを作成します。
+
+```
+//削除するためのメソッド
+public function delete($id)
+{
+    $stmt = $this->db_manager->dbh->prepare('DELETE FROM '.$this->table.' WHERE id = ?');
+    $stmt->execute([$id]);
+}
+```
+
+delete.phpでクラスTodoをインスタンス化しメソッドdeleteを呼び出します。
+```
+<?php
+
+    require_once 'Models/Todo.php';
+
+    $id = $_GET['id'];
+
+    $todo = new Todo();
+
+    $todo->delete($id);
+```
+phpMyAdminで指定したデータの削除を確認できたら、index.phpにリダイレクトするようにコードを追記します。
+
+```
+    header('Location: index.php');
+```
+ここまでのフォルダー構造とコードは以下の通りになります。(*印のついたものは新規追加ファイルです)
+
+```
+php_oop/
+  ├ index.php (トップページ)
+  ├ create.php (データ登録機能)
+  ├ edit.php (データ更新(UI))
+  ├ update.php (データ更新機能)
+  ├ *delete.php (データ削除機能)
+  ├ function.php (エスケープ処理)
+  ├ config/
+  |    └ dbconnect.php（DBとアクセスするための設定など）
+  ├ Models/
+  |    └ Todo.php（CRUDのやりとり）
+  └ assets/
+    └ css/(元リポジトリのファイルをコピペなので割愛)
+        ├ reset.css
+        └ style.css
+```
+
+**index.php**
+```<?php
+
+    // require_once('function.php');
+    require_once 'function.php';
+
+    // require_once('Models/Todo.php');
+    require_once 'Models/Todo.php';
+
+    //Todoクラスのインスタンス化
+    $todo = new Todo();
+
+    //DBからデータを全件取得
+    $tasks = $todo->all();
+
+    // echo '<pre>';
+    // var_dump($tasks);
+    // exit();
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="px-5 bg-primary">
+      <nav class="navbar navbar-dark">
+          <a href="index.php" class="navbar-brand">TODO APP</a>
+          <div class="justify-content-end">
+              <span class="text-light">
+                  SeedKun
+              </span>
+          </div>
+      </nav>
+    </header>
+    <main class="container py-5">
+        <section>
+            <form class="form-row justify-content-center" action="create.php" method="POST">
+                <div class="col-10 col-md-6 py-2">
+                      <input type="text" class="form-control" placeholder="ADD TODO" name="task">
+                </div>
+                <div class="py-2 col-md-3 col-10">
+                    <button type="submit" class="col-12 btn btn-primary">ADD</button>
+                </div>
+            </form>
+        </section>
+        <section class="mt-5">
+          <table class="table table-hover">
+            <thead>
+              <tr class="bg-primary text-light">
+                  <th class=>TODO</th>
+                  <th>DUE DATE</th>
+                  <th>STATUS</th>
+                  <th></th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($tasks as
+              $task):?>
+              <tr>
+                <td>
+                <?php echo h($task['name']); ?>
+                </td>
+                <td>
+                <?php echo h($task['due_date']); ?>
+                </td>
+                <td>NOT YET</td>
+                <td>
+                    <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
+                </td>
+                <td>
+                    <a class="text-danger" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </section>
+    </main>
+
+</body>
+</html>
+```
+**delete.php**
+```
+<?php
+
+    require_once 'Models/Todo.php';
+
+    $id = $_GET['id'];
+
+    $todo = new Todo();
+
+    $todo->delete($id);
+
+    header('Location: index.php');
+
 ```
 [▲先頭に戻る▲](#todo-app-を作ろう)
