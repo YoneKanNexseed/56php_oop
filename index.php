@@ -74,11 +74,11 @@
                 <td>
                 <?php echo h($task['name']); ?>
                 </td>
-                <td class="nowrap">登録日:<?php echo date('Y年m月d日', strtotime(h($task['due_date']))); ?>
+                <td class="nowrap">registered:<?php echo date('Y年m月d日', strtotime(h($task['due_date']))); ?>
                 <?php
                 if (strtotime(h($task['updated_at'])) > 0):?>
                 <br>
-                更新日:<?php echo date('Y年m月d日', strtotime(h($task['updated_at']))); ?>
+                modified:<?php echo date('Y年m月d日', strtotime(h($task['updated_at']))); ?>
                 <?php endif; ?>
                 </td>
                 <td>NOT YET</td>
