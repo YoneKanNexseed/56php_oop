@@ -7,11 +7,11 @@ class DbManager
     public function connect()
     {
         //DBに接続
-        $host = 'localhost';
-        $dbname = 'Todo';
+        $host = '127.0.0.1';
+        $dbname = '56_todo';
         $charset = 'utf8mb4';
         $user = 'root';
-        $password = 'password';
+        $password = '';
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
