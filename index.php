@@ -67,9 +67,7 @@
                 <td>
                 <?php echo h($task['name']); ?>
                 </td>
-                <td>
-                <?php echo h($task['due_date']); ?>
-                </td>
+                <td><?php echo date('Y年m月d日', strtotime($task['due_date'])); ?></td>
                 <td>NOT YET</td>
                 <td>
                     <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>"><i class="fas fa-pencil-alt"></i></a>
