@@ -29,10 +29,10 @@ $(function () {
                 `<td>NOT YET</td>` + 
                 `<td>` + 
                     `<a class="text-success" href="edit.php?id=${data['id']}">EDIT</a>` + 
-                `</td>` + 
-                `<td>` + 
+                `</td>` +
+                `<td>` +
                     `<a class="text-danger" href="delete.php?id=${data['id']}">DELETE</a>` + 
-                `</td>` + 
+                `</td>` +
               `</tr>`
       );
 
