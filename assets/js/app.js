@@ -25,15 +25,15 @@ $(function () {
       $('tbody').prepend(
               `<tr>` + 
                 `<td>${data['name']}</td>` + 
-                `<td>${data['due_date']</td>`
-                <td>NOT YET</td>
-                <td>
-                    <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
-                </td>
-                <td>
-                    <a class="text-danger" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
-                </td>
-              </tr>
+                `<td>${data['due_date']}</td>` + 
+                `<td>NOT YET</td>` + 
+                `<td>` + 
+                    `<a class="text-success" href="edit.php?id=${data['id']}">EDIT</a>` + 
+                `</td>` + 
+                `<td>` + 
+                    `<a class="text-danger" href="delete.php?id=${data['id']}">DELETE</a>` + 
+                `</td>` + 
+              `</tr>`
       );
 
 
