@@ -1,3 +1,8 @@
+// HTMLが読み込まれたら、カッコの中を実行
+// $(function {
+// HTML読み込みが終わったらここが実行される
+// })
+
 $(function () {
 
   // 追加ボタンがクリックされた時
@@ -31,17 +36,29 @@ $(function () {
                     `<a class="text-success" href="edit.php?id=${data['id']}">EDIT</a>` + 
                 `</td>` +
                 `<td>` +
-                    `<a class="text-danger" href="delete.php?id=${data['id']}">DELETE</a>` + 
+                    `<a class="text-danger delete-button" href="delete.php?id=${data['id']}">DELETE</a>` + 
                 `</td>` +
               `</tr>`
       );
 
-
     }).fail((error) => {
-
+      console.log(error);
     })
+  });
 
+  // 削除のボタンがクリックされたときの処理
+  // $('.delete-button').on('click', function(e){
+  $(document).on('click', '.delete-button', function(e) {
+
+    // 二重送信の無効化
+    e.preventDefault();
+
+    // 削除対象のIDを取得
+    let selectedId = $(this).data('id');
+    alert(selectedId);
+
+    // ajax開始
 
   });
 
-})
+});
