@@ -64,7 +64,7 @@
             <tbody>
               <?php foreach ($tasks as
               $task):?>
-              <tr>
+              <tr id="task-<?php echo h($task['id']); ?>">
                 <td>
                 <?php echo h($task['name']); ?>
                 </td>
@@ -76,7 +76,7 @@
                     <a class="text-success" href="edit.php?id=<?php echo h($task['id']); ?>">EDIT</a>
                 </td>
                 <td>
-                    <a data-id="sample" class="text-danger delete-button" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
+                    <a data-id="<?php echo h($task['id']); ?>" class="text-danger delete-button" href="delete.php?id=<?php echo h($task['id']); ?>">DELETE</a>
                 </td>
               </tr>
               <?php endforeach; ?>

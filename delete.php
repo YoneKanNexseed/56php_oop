@@ -8,4 +8,5 @@
 
     $todo->delete($id);
 
-    header('Location: index.php');
+    echo json_encode($id);
+    // header('Location: index.php');
