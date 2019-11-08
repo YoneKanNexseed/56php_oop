@@ -80,4 +80,15 @@ $(function () {
 
   });
 
+  // 完了ボタンがクリックされた時
+  $(document).on('click', '.done-button', function() {
+    
+    // IDを取得
+    let selectedId = $(this).data('id');
+
+    // アラートでIDを表示する
+    alert(selectedId);
+
+  })
+
 });
